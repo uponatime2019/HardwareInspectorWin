@@ -1,0 +1,76 @@
+<UserControl
+    x:Class="NewHwInspector.Views.SensorsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Toolbar -->
+        <Border Grid.Row="0" Background="{ThemeResource TitleBarBgBrush}" BorderBrush="{ThemeResource DividerBrush}" BorderThickness="0,0,0,1" Padding="12,8">
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="Sensors" Style="{ThemeResource HeaderTextStyle}" FontSize="14" VerticalAlignment="Center"/>
+                    <TextBox x:Name="SearchBox" Width="220" PlaceholderText="Search sensors..." TextChanged="OnSearchChanged"/>
+                    <ComboBox x:Name="GroupCombo" Width="160" PlaceholderText="Group" SelectionChanged="OnGroupChanged">
+                        <ComboBoxItem Content="All groups" IsSelected="True"/>
+                    </ComboBox>
+                    <ComboBox x:Name="SortCombo" Width="140" SelectionChanged="OnSortChanged">
+                        <ComboBoxItem Content="Sort: Name" Tag="Name" IsSelected="True"/>
+                        <ComboBoxItem Content="Sort: Current" Tag="Current"/>
+                        <ComboBoxItem Content="Sort: Group" Tag="Group"/>
+                        <ComboBoxItem Content="Sort: Status" Tag="Status"/>
+                    </ComboBox>
+                    <CheckBox x:Name="GroupCheck" Content="Group" IsChecked="True" Checked="OnGroupToggle" Unchecked="OnGroupToggle"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                    <Button x:Name="PauseBtn" Click="OnPauseResume" ToolTipService.ToolTip="Pause / resume monitoring">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon x:Name="PauseIcon" Glyph="&#xE769;" FontSize="12"/>
+                            <TextBlock x:Name="PauseText" Text="Pause" Foreground="{ThemeResource CardTextBrush}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="OnClearHistory" ToolTipService.ToolTip="Clear min/max/average">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon Glyph="&#xE74D;" FontSize="12"/>
+                            <TextBlock Text="Clear" Foreground="{ThemeResource CardTextBrush}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="OnExportSensors" ToolTipService.ToolTip="Export sensors">
+                        <FontIcon Glyph="&#xE74E;" FontSize="12"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Table -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0">
+            <StackPanel x:Name="SensorsHost" Spacing="0"/>
+        </ScrollViewer>
+
+        <!-- Status -->
+        <Border Grid.Row="2" Background="{ThemeResource TitleBarBgBrush}" BorderBrush="{ThemeResource DividerBrush}" BorderThickness="0,1,0,0" Padding="10,6">
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="StatusText" Style="{ThemeResource SubText}" VerticalAlignment="Center" Text="Monitoring active • Last sample — • Alerts: none"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                    <FontIcon Glyph="&#xE7BA;" FontSize="12" Foreground="{ThemeResource AccentOrangeBrush}" x:Name="AlertIcon" Visibility="Collapsed"/>
+                    <TextBlock x:Name="AlertText" Style="{ThemeResource SubText}" FontSize="14" Visibility="Collapsed"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

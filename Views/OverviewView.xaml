@@ -1,0 +1,144 @@
+<UserControl
+    x:Class="NewHwInspector.Views.OverviewView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="16">
+        <StackPanel Spacing="14">
+            <!-- Header -->
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Spacing="2">
+                    <TextBlock Text="System Overview" Style="{ThemeResource HeaderTextStyle}"/>
+                    <TextBlock x:Name="UpdatedText" Style="{ThemeResource SubText}" Text="Updated: —"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <TextBlock x:Name="StatusText" VerticalAlignment="Center" Style="{ThemeResource SubText}" Text="Ready"/>
+                    <Button Click="OnRefresh" ToolTipService.ToolTip="Refresh overview">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon Glyph="&#xE72C;" FontSize="12"/>
+                            <TextBlock Text="Refresh"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!-- Top 4 cards -->
+            <Grid ColumnSpacing="10" RowSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Style="{ThemeResource CardBorder}" Grid.Column="0">
+                    <StackPanel Spacing="6">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE950;" Foreground="{ThemeResource AccentCyanBrush}" FontSize="16"/>
+                            <TextBlock Text="CPU" Style="{ThemeResource CardTitleText}"/>
+                        </StackPanel>
+                        <TextBlock x:Name="CpuNameText" FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" Foreground="{ThemeResource CardTextBrush}"/>
+                        <TextBlock x:Name="CpuCoresText" Style="{ThemeResource SubText}"/>
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <Border Background="#1A2D4A" Padding="6,2" CornerRadius="4">
+                                <TextBlock x:Name="CpuTempText" FontSize="14" Foreground="#7EC8FF" Text="— °C"/>
+                            </Border>
+                            <TextBlock x:Name="CpuClockText" VerticalAlignment="Center" Style="{ThemeResource SubText}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Border Style="{ThemeResource CardBorder}" Grid.Column="1">
+                    <StackPanel Spacing="6">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE8F1;" Foreground="{ThemeResource AccentGreenBrush}" FontSize="16"/>
+                            <TextBlock Text="Memory" Style="{ThemeResource CardTitleText}"/>
+                        </StackPanel>
+                        <TextBlock x:Name="MemTotalText" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource CardTextBrush}"/>
+                        <TextBlock x:Name="MemTypeText" Style="{ThemeResource SubText}"/>
+                        <ProgressBar x:Name="MemProgress" Maximum="100" Height="6" Foreground="{ThemeResource AccentGreenBrush}"/>
+                        <TextBlock x:Name="MemUsedText" Style="{ThemeResource SubText}"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{ThemeResource CardBorder}" Grid.Column="2">
+                    <StackPanel Spacing="6">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xEB9F;" Foreground="#C86BFF" FontSize="16"/>
+                            <TextBlock Text="GPU" Style="{ThemeResource CardTitleText}"/>
+                        </StackPanel>
+                        <TextBlock x:Name="GpuNameText" FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" Foreground="{ThemeResource CardTextBrush}"/>
+                        <TextBlock x:Name="GpuMemText" Style="{ThemeResource SubText}"/>
+                        <TextBlock x:Name="GpuDriverText" Style="{ThemeResource SubText}" FontSize="14"/>
+                        <TextBlock x:Name="GpuTempText" Style="{ThemeResource SubText}"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{ThemeResource CardBorder}" Grid.Column="3">
+                    <StackPanel Spacing="6">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xEDA2;" Foreground="#FF9F6B" FontSize="16"/>
+                            <TextBlock Text="Storage" Style="{ThemeResource CardTitleText}"/>
+                        </StackPanel>
+                        <TextBlock x:Name="StorageSummaryText" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource CardTextBrush}"/>
+                        <TextBlock x:Name="SystemDriveText" Style="{ThemeResource SubText}"/>
+                        <TextBlock x:Name="DriveCountText" Style="{ThemeResource SubText}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Detail rows -->
+            <Grid ColumnSpacing="10" RowSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Style="{ThemeResource CardBorder}" Grid.Column="0" Grid.Row="0">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Motherboard &amp; BIOS" Style="{ThemeResource CardTitleText}"/>
+                        <StackPanel Spacing="4" x:Name="BoardPanel"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{ThemeResource CardBorder}" Grid.Column="1" Grid.Row="0">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Operating System" Style="{ThemeResource CardTitleText}"/>
+                        <StackPanel Spacing="4" x:Name="OsPanel"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{ThemeResource CardBorder}" Grid.Column="0" Grid.Row="1">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="CPU Details" Style="{ThemeResource CardTitleText}"/>
+                        <StackPanel Spacing="4" x:Name="CpuDetailPanel"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{ThemeResource CardBorder}" Grid.Column="1" Grid.Row="1">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Firmware &amp; Security" Style="{ThemeResource CardTitleText}"/>
+                        <StackPanel Spacing="4" x:Name="SecPanel"/>
+                        <InfoBar x:Name="WarnBar" IsOpen="False" Severity="Warning" Title="Notes" IsClosable="False"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border Style="{ThemeResource CardBorder}" Visibility="Collapsed" x:Name="WarningsCard">
+                <StackPanel Spacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE7BA;" Foreground="{ThemeResource AccentOrangeBrush}"/>
+                        <TextBlock Text="Diagnostics notes" Style="{ThemeResource CardTitleText}"/>
+                    </StackPanel>
+                    <TextBlock x:Name="WarningsText" Style="{ThemeResource SubText}" IsTextSelectionEnabled="True" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Style="{ThemeResource SubText}" FontSize="14" Text="No network transmission • All values collected locally via Windows Management Instrumentation. Temperatures show n/a if not exposed by firmware." TextWrapping="Wrap"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

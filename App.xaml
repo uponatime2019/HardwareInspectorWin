@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application
+    x:Class="NewHwInspector.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+            </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="AppBgBrush" Color="#F2F3F7"/>
+                    <SolidColorBrush x:Key="TitleBarBgBrush" Color="#E8EAF0"/>
+                    <SolidColorBrush x:Key="NavBgBrush" Color="#E8EAF0"/>
+                    <SolidColorBrush x:Key="CardBgBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="CardBorderBrush" Color="#D8DCE6"/>
+                    <SolidColorBrush x:Key="HeaderBgBrush" Color="#EFF2F8"/>
+                    <SolidColorBrush x:Key="DividerBrush" Color="#DDE2EE"/>
+                    <SolidColorBrush x:Key="SubTextBrush" Color="#5A6578"/>
+                    <SolidColorBrush x:Key="TableAltBrush" Color="#F7F8FA"/>
+                    <SolidColorBrush x:Key="ChipBgBrush" Color="#E9ECF4"/>
+                    <SolidColorBrush x:Key="NavSelectedBrush" Color="#DDE9FF"/>
+                    <SolidColorBrush x:Key="HeaderTextBrush" Color="#0B1220"/>
+                    <SolidColorBrush x:Key="CardTextBrush" Color="#0B1220"/>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="AppBgBrush" Color="#090E1A"/>
+                    <SolidColorBrush x:Key="TitleBarBgBrush" Color="#0C1220"/>
+                    <SolidColorBrush x:Key="NavBgBrush" Color="#0C1220"/>
+                    <SolidColorBrush x:Key="CardBgBrush" Color="#131C30"/>
+                    <SolidColorBrush x:Key="CardBorderBrush" Color="#1F2E4A"/>
+                    <SolidColorBrush x:Key="HeaderBgBrush" Color="#111B2F"/>
+                    <SolidColorBrush x:Key="DividerBrush" Color="#1E2F4D"/>
+                    <SolidColorBrush x:Key="SubTextBrush" Color="#8B9AB5"/>
+                    <SolidColorBrush x:Key="TableAltBrush" Color="#0E172A"/>
+                    <SolidColorBrush x:Key="ChipBgBrush" Color="#182642"/>
+                    <SolidColorBrush x:Key="NavSelectedBrush" Color="#1A2D4A"/>
+                    <SolidColorBrush x:Key="HeaderTextBrush" Color="#E6ECFA"/>
+                    <SolidColorBrush x:Key="CardTextBrush" Color="#E6ECFA"/>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="AppBgBrush" Color="#000000"/>
+                    <SolidColorBrush x:Key="TitleBarBgBrush" Color="#000000"/>
+                    <SolidColorBrush x:Key="NavBgBrush" Color="#000000"/>
+                    <SolidColorBrush x:Key="CardBgBrush" Color="#1A1A1A"/>
+                    <SolidColorBrush x:Key="CardBorderBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="HeaderBgBrush" Color="#000000"/>
+                    <SolidColorBrush x:Key="DividerBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="SubTextBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="TableAltBrush" Color="#1A1A1A"/>
+                    <SolidColorBrush x:Key="ChipBgBrush" Color="#333333"/>
+                    <SolidColorBrush x:Key="NavSelectedBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="HeaderTextBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="CardTextBrush" Color="#FFFFFF"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
+            <SolidColorBrush x:Key="AccentCyanBrush" Color="#4CC3FF"/>
+            <SolidColorBrush x:Key="AccentGreenBrush" Color="#4CC38A"/>
+            <SolidColorBrush x:Key="AccentOrangeBrush" Color="#E8B33C"/>
+            <SolidColorBrush x:Key="AccentRedBrush" Color="#E8574E"/>
+
+            <Style x:Key="CardBorder" TargetType="Border">
+                <Setter Property="Background" Value="{ThemeResource CardBgBrush}"/>
+                <Setter Property="BorderBrush" Value="{ThemeResource CardBorderBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="Padding" Value="14"/>
+            </Style>
+            <Style x:Key="CardTitleText" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Foreground" Value="{ThemeResource CardTextBrush}"/>
+            </Style>
+            <Style x:Key="CardValueText" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="{ThemeResource CardTextBrush}"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="IsTextSelectionEnabled" Value="True"/>
+            </Style>
+            <Style x:Key="SubText" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{ThemeResource SubTextBrush}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+            </Style>
+            <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Foreground" Value="{ThemeResource HeaderTextBrush}"/>
+            </Style>
+            <Style x:Key="SensorHeaderGridStyle" TargetType="Grid">
+                <Setter Property="Background" Value="{ThemeResource HeaderBgBrush}"/>
+            </Style>
+            <Style x:Key="SensorDividerBorderStyle" TargetType="Border">
+                <Setter Property="BorderBrush" Value="{ThemeResource DividerBrush}"/>
+            </Style>
+            <Style x:Key="SensorSubIconStyle" TargetType="FontIcon">
+                <Setter Property="Foreground" Value="{ThemeResource SubTextBrush}"/>
+            </Style>
+            <Style x:Key="NavIcon" TargetType="FontIcon">
+                <Setter Property="FontFamily" Value="Segoe Fluent Icons"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style x:Key="MenuGlyphIcon" TargetType="FontIcon">
+                <Setter Property="FontFamily" Value="Segoe Fluent Icons"/>
+                <Setter Property="FontSize" Value="13"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,117 @@
+<UserControl
+    x:Class="NewHwInspector.Views.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="16">
+        <StackPanel Spacing="14" MaxWidth="800">
+            <TextBlock Text="Settings &amp; About" Style="{ThemeResource HeaderTextStyle}"/>
+            <TextBlock Style="{ThemeResource SubText}" Text="Adjust monitoring behavior, appearance, and storage. All settings are stored locally." TextWrapping="Wrap"/>
+
+            <Border Style="{ThemeResource CardBorder}">
+                <StackPanel Spacing="14">
+                    <TextBlock Text="Monitoring" Style="{ThemeResource CardTitleText}"/>
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Refresh interval" Style="{ThemeResource SubText}"/>
+                        <ComboBox x:Name="IntervalCombo" Width="220" SelectionChanged="OnIntervalChanged">
+                            <ComboBoxItem Content="1 second" Tag="1"/>
+                            <ComboBoxItem Content="2 seconds" Tag="2"/>
+                            <ComboBoxItem Content="5 seconds" Tag="5"/>
+                            <ComboBoxItem Content="10 seconds" Tag="10"/>
+                            <ComboBoxItem Content="30 seconds" Tag="30"/>
+                        </ComboBox>
+                        <TextBlock Style="{ThemeResource SubText}" FontSize="14" Text="Lower intervals give smoother charts but use more CPU. 2 seconds is recommended."/>
+                    </StackPanel>
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Chart time range" Style="{ThemeResource SubText}"/>
+                        <ComboBox x:Name="ChartRangeCombo" Width="220" SelectionChanged="OnChartRangeChanged">
+                            <ComboBoxItem Content="1 minute" Tag="1"/>
+                            <ComboBoxItem Content="5 minutes" Tag="5"/>
+                            <ComboBoxItem Content="15 minutes" Tag="15"/>
+                            <ComboBoxItem Content="30 minutes" Tag="30"/>
+                        </ComboBox>
+                        <CheckBox x:Name="AutoFitCheck" Content="Auto-fit chart Y-axis to data" Checked="OnAutoFitChanged" Unchecked="OnAutoFitChanged"/>
+                    </StackPanel>
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Temperature unit" Style="{ThemeResource SubText}"/>
+                        <ComboBox x:Name="TempUnitCombo" Width="220" SelectionChanged="OnTempUnitChanged">
+                            <ComboBoxItem Content="Celsius (°C)" Tag="Celsius"/>
+                            <ComboBoxItem Content="Fahrenheit (°F)" Tag="Fahrenheit"/>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{ThemeResource CardBorder}">
+                <StackPanel Spacing="14">
+                    <TextBlock Text="Appearance" Style="{ThemeResource CardTitleText}"/>
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Theme" Style="{ThemeResource SubText}"/>
+                        <ComboBox x:Name="ThemeCombo" Width="220" SelectionChanged="OnThemeChanged">
+                            <ComboBoxItem Content="Dark (diagnostic)" Tag="Dark"/>
+                            <ComboBoxItem Content="Light" Tag="Light"/>
+                            <ComboBoxItem Content="System" Tag="System"/>
+                        </ComboBox>
+                        <TextBlock Style="{ThemeResource SubText}" FontSize="14" Text="Dark is the classic Hardware Inspector look — near-black, low eye strain during diagnostics."/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{ThemeResource CardBorder}">
+                <StackPanel Spacing="14">
+                    <TextBlock Text="Storage" Style="{ThemeResource CardTitleText}"/>
+                    <Grid ColumnSpacing="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="ReportFolderBox" Header="Report folder" PlaceholderText="Default: LocalState\Reports" IsReadOnly="True"/>
+                        <Button Grid.Column="1" VerticalAlignment="Bottom" Content="Browse…" Click="OnBrowseFolder"/>
+                    </Grid>
+                    <CheckBox x:Name="GroupSensorsCheck" Content="Group sensors by category (Sensors page)" Checked="OnGroupSensorsChanged" Unchecked="OnGroupSensorsChanged"/>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Click="OnOpenLogs">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <FontIcon Glyph="&#xE838;" FontSize="12"/>
+                                <TextBlock Text="Open logs folder"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Click="OnClearHistory">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <FontIcon Glyph="&#xE74D;" FontSize="12"/>
+                                <TextBlock Text="Clear sensor history"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{ThemeResource CardBorder}">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="About" Style="{ThemeResource CardTitleText}"/>
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Image Source="ms-appx:///Assets/StoreLogo.png" Width="48" Height="48"/>
+                        <StackPanel Spacing="2" VerticalAlignment="Center">
+                            <TextBlock x:Name="AppNameText" FontWeight="SemiBold" FontSize="14" Foreground="{ThemeResource CardTextBrush}"/>
+                            <TextBlock x:Name="VersionText" Style="{ThemeResource SubText}"/>
+                            <TextBlock x:Name="ArchText" Style="{ThemeResource SubText}" FontSize="14"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock Style="{ThemeResource SubText}" TextWrapping="Wrap" Text="New HwInspector is an open-source hardware information and monitoring utility. It shows real Windows system data collected locally via WMI, registry, and native OS APIs. No network calls are made."/>
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Privacy statement" FontWeight="SemiBold" FontSize="14"/>
+                        <TextBlock Style="{ThemeResource SubText}" TextWrapping="Wrap" Text="• No personal data is collected or transmitted.&#10;• All hardware reads happen on-device via Windows Management Instrumentation (WMI) and native APIs.&#10;• Reports are saved only to the folder you choose.&#10;• Sensor history lives only in memory and is cleared when the app closes.&#10;• If a sensor shows ‘n/a’, the value is not exposed by your firmware or driver — no value is fabricated."/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <HyperlinkButton Content="View reports folder" Click="OnOpenReports"/>
+                    </StackPanel>
+                    <TextBlock x:Name="ErrorStateText" Style="{ThemeResource SubText}" FontSize="14" IsTextSelectionEnabled="True" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <InfoBar x:Name="InfoBar" IsOpen="False" Severity="Success" IsClosable="True"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
