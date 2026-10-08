@@ -1,13 +1,13 @@
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using NewHwInspector.Models;
-using NewHwInspector.Services;
+using HardwareInspectorWin.Models;
+using HardwareInspectorWin.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NewHwInspector.Views;
+namespace HardwareInspectorWin.Views;
 
 public sealed partial class SensorsView : UserControl
 {

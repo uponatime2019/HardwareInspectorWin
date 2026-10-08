@@ -1,12 +1,12 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace NewHwInspector.Services;
+namespace HardwareInspectorWin.Services;
 
-public sealed class NewHwInspectorSettings
+public sealed class HardwareInspectorWinSettings
 {
     [JsonProperty("refreshIntervalSeconds")] public int RefreshIntervalSeconds { get; set; } = 2;
     [JsonProperty("theme")] public string Theme { get; set; } = "Dark"; // Dark, Light, System
@@ -24,15 +24,15 @@ public sealed class NewHwInspectorSettings
 public static class AppSettings
 {
     private static readonly object Gate = new();
-    private static NewHwInspectorSettings? _current;
+    private static HardwareInspectorWinSettings? _current;
 
     public static string SettingsDirectory =>
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NewHwInspector");
+        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "HardwareInspectorWin");
 
     public static string SettingsFilePath =>
         Path.Combine(SettingsDirectory, "settings.json");
 
-    public static NewHwInspectorSettings Current => _current ??= new NewHwInspectorSettings();
+    public static HardwareInspectorWinSettings Current => _current ??= new HardwareInspectorWinSettings();
 
     public static async Task LoadAsync()
     {
@@ -43,7 +43,7 @@ public static class AppSettings
                 if (File.Exists(SettingsFilePath))
                 {
                     string json = File.ReadAllText(SettingsFilePath);
-                    var loaded = JsonConvert.DeserializeObject<NewHwInspectorSettings>(json);
+                    var loaded = JsonConvert.DeserializeObject<HardwareInspectorWinSettings>(json);
                     if (loaded != null)
                     {
                         _current = loaded;
@@ -59,7 +59,7 @@ public static class AppSettings
 
             if (_current == null)
             {
-                _current = new NewHwInspectorSettings { RunCount = 1, IsFirstTimeRun = true };
+                _current = new HardwareInspectorWinSettings { RunCount = 1, IsFirstTimeRun = true };
             }
 
             if (_current.RefreshIntervalSeconds < 1) _current.RefreshIntervalSeconds = 1;

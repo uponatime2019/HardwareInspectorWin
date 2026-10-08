@@ -1,11 +1,11 @@
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using NewHwInspector.Services;
+using HardwareInspectorWin.Services;
 using System;
 using System.IO;
 using Windows.Storage.Pickers;
 
-namespace NewHwInspector.Views;
+namespace HardwareInspectorWin.Views;
 
 public sealed partial class SettingsView : UserControl
 {
@@ -28,7 +28,7 @@ public sealed partial class SettingsView : UserControl
         ReportFolderBox.Text = string.IsNullOrWhiteSpace(s.ReportFolder) ? ReportService.DefaultReportFolder : s.ReportFolder;
         GroupSensorsCheck.IsChecked = s.GroupSensors;
         AutoFitCheck.IsChecked = s.AutoFitCharts;
-        AppNameText.Text = "New HwInspector";
+        AppNameText.Text = "Hardware Inspector Win";
         VersionText.Text = $"Version {ReportService.AppVersion} • Build {DateTime.Now:yyyy-MM-dd}";
         ArchText.Text = $"Platform {Environment.OSVersion.VersionString} • {System.Runtime.InteropServices.RuntimeInformation.OSArchitecture} • {Environment.ProcessorCount} logical processors";
         ErrorStateText.Text = $"Logs: {AppLogger.LogDirectory}\nSettings: {AppSettings.SettingsFilePath}\nRuns: {s.RunCount} • First run: {s.IsFirstTimeRun}";

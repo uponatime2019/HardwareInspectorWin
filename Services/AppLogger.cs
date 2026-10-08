@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace NewHwInspector.Services;
+namespace HardwareInspectorWin.Services;
 
 public static class AppLogger
 {
@@ -10,7 +10,7 @@ public static class AppLogger
     private static string? _sessionFile;
 
     public static string LogDirectory =>
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NewHwInspector", "logs");
+        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "HardwareInspectorWin", "logs");
 
     private static string SessionFile()
     {
@@ -39,6 +39,6 @@ public static class AppLogger
     {
         Log($"[EXCEPTION:{context}] {ex.GetType().Name}: {ex.Message}");
         Log($"[EXCEPTION:{context}] stack: {ex.StackTrace}");
-        Debug.WriteLine($"[NewHwInspector:{context}] {ex}");
+        Debug.WriteLine($"[HardwareInspectorWin:{context}] {ex}");
     }
 }

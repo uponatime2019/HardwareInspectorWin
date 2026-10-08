@@ -1,16 +1,16 @@
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using NewHwInspector.Helpers;
-using NewHwInspector.Models;
-using NewHwInspector.Services;
-using NewHwInspector.Views;
+using HardwareInspectorWin.Helpers;
+using HardwareInspectorWin.Models;
+using HardwareInspectorWin.Services;
+using HardwareInspectorWin.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace NewHwInspector;
+namespace HardwareInspectorWin;
 
 public sealed partial class MainWindow : Window
 {
@@ -43,7 +43,7 @@ public sealed partial class MainWindow : Window
             // Theme radios
             UpdateThemeRadios();
 
-            VersionText.Text = $"New HwInspector v{ReportService.AppVersion} • {System.Runtime.InteropServices.RuntimeInformation.OSArchitecture}";
+            VersionText.Text = $"Hardware Inspector Win v{ReportService.AppVersion} • {System.Runtime.InteropServices.RuntimeInformation.OSArchitecture}";
             StatusText.Text = "Initializing local hardware scan…";
             UptimeText.Text = "Uptime —";
 

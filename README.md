@@ -1,6 +1,6 @@
-<div align="center">
+﻿<div align="center">
 
-# ⚡ New HwInspector
+# ⚡ Hardware Inspector Win
 
 **A modern, lightweight Windows PC hardware inspection & real-time sensor monitoring utility built with WinUI 3 and .NET 8.**
 
@@ -8,7 +8,7 @@
 [![WinUI 3](https://img.shields.io/badge/WinUI-3-0078D4?logo=windows&logoColor=white)](https://learn.microsoft.com/windows/apps/winui/winui3/)
 [![Windows 10/11](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6?logo=windows11&logoColor=white)](https://microsoft.com/windows)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Latest Release](https://img.shields.io/github/v/release/uponatime2019/NewHwInspector?logo=github&color=brightgreen)](https://github.com/uponatime2019/NewHwInspector/releases/latest)
+[![Latest Release](https://img.shields.io/github/v/release/uponatime2019/HardwareInspectorWin?logo=github&color=brightgreen)](https://github.com/uponatime2019/HardwareInspectorWin/releases/latest)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 <br/>
@@ -23,11 +23,11 @@
 
 Experience fast, zero-footprint hardware inspection without installers or background services:
 
-1. Download **`NewHwInspector-*-win-x64.zip`** from the [Latest Release](https://github.com/uponatime2019/NewHwInspector/releases/latest).
+1. Download **`HardwareInspectorWin-*-win-x64.zip`** from the [Latest Release](https://github.com/uponatime2019/HardwareInspectorWin/releases/latest).
 2. Extract the archive anywhere on your machine.
-3. Launch **`NewHwInspector.exe`**.
+3. Launch **`HardwareInspectorWin.exe`**.
 
-> **Note**: Self-contained portable build with zero external runtime dependencies. Settings and session logs are kept strictly local in `%LOCALAPPDATA%\NewHwInspector`.
+> **Note**: Self-contained portable build with zero external runtime dependencies. Settings and session logs are kept strictly local in `%LOCALAPPDATA%\HardwareInspectorWin`.
 
 ---
 
@@ -47,7 +47,7 @@ Experience fast, zero-footprint hardware inspection without installers or backgr
 ## 🏗️ Architecture & Technology Stack
 
 ```
-NewHwInspector/
+HardwareInspectorWin/
 ├── App.xaml(.cs)              # Application entry point, global exception logging, theme management
 ├── MainWindow.xaml(.cs)       # Main window layout, sidebar navigation, real-time status bar
 ├── Assets/                    # App icons, splash screens, and README screenshots
@@ -102,14 +102,14 @@ NewHwInspector/
 
 ```powershell
 # 1. Clone the repository
-git clone https://github.com/uponatime2019/NewHwInspector.git
-cd NewHwInspector
+git clone https://github.com/uponatime2019/HardwareInspectorWin.git
+cd HardwareInspectorWin
 
 # 2. Build for x64
-dotnet build NewHwInspector.csproj -p:Platform=x64
+dotnet build HardwareInspectorWin.csproj -p:Platform=x64
 
 # 3. Run the application
-dotnet run --project NewHwInspector.csproj -p:Platform=x64
+dotnet run --project HardwareInspectorWin.csproj -p:Platform=x64
 ```
 
 ### Self-Contained Release Publish
@@ -117,7 +117,7 @@ dotnet run --project NewHwInspector.csproj -p:Platform=x64
 To build the standalone portable folder locally:
 
 ```powershell
-dotnet publish NewHwInspector.csproj -c Release -p:Platform=x64 -o publish/NewHwInspector_Portable
+dotnet publish HardwareInspectorWin.csproj -c Release -p:Platform=x64 -o publish/HardwareInspectorWin_Portable
 ```
 
 ---

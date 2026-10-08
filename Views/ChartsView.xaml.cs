@@ -1,14 +1,14 @@
-using Microsoft.UI;
+﻿using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
-using NewHwInspector.Models;
-using NewHwInspector.Services;
+using HardwareInspectorWin.Models;
+using HardwareInspectorWin.Services;
 using System;
 using System.Linq;
 
-namespace NewHwInspector.Views;
+namespace HardwareInspectorWin.Views;
 
 public sealed partial class ChartsView : UserControl
 {

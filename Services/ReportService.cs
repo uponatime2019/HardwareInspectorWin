@@ -1,4 +1,4 @@
-using NewHwInspector.Models;
+﻿using HardwareInspectorWin.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NewHwInspector.Services;
+namespace HardwareInspectorWin.Services;
 
 public static class ReportService
 {
@@ -26,7 +26,7 @@ public static class ReportService
     }
 
     public static string DefaultReportFolder =>
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "New HwInspector Reports");
+        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Hardware Inspector Win Reports");
 
     public static async Task<string> GenerateAsync(ReportOptions opts, OverviewData overview, List<HardwareNode> tree, IReadOnlyList<SensorEntry> sensors, IReadOnlyList<AlertRule> alerts)
     {
@@ -39,7 +39,7 @@ public static class ReportService
 
         string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         string ext = opts.Format.ToLowerInvariant() switch { "html" => "html", "json" => "json", "csv" => "csv", _ => "txt" };
-        string fileName = $"NewHwInspector_Report_{timestamp}.{ext}";
+        string fileName = $"HardwareInspectorWin_Report_{timestamp}.{ext}";
         string fullPath = Path.Combine(folder, fileName);
 
         string content = opts.Format switch
@@ -58,7 +58,7 @@ public static class ReportService
     private static string BuildText(OverviewData ov, List<HardwareNode> tree, IReadOnlyList<SensorEntry> sensors, IReadOnlyList<AlertRule> alerts, ReportOptions opts)
     {
         var sb = new StringBuilder();
-        sb.AppendLine("New HwInspector — Hardware Report");
+        sb.AppendLine("Hardware Inspector Win — Hardware Report");
         sb.AppendLine($"Generated: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
         sb.AppendLine($"Machine: {Environment.MachineName}");
         sb.AppendLine($"App version: {AppVersion}");
@@ -122,9 +122,9 @@ public static class ReportService
     private static string BuildHtml(OverviewData ov, List<HardwareNode> tree, IReadOnlyList<SensorEntry> sensors, IReadOnlyList<AlertRule> alerts, ReportOptions opts)
     {
         var sb = new StringBuilder();
-        sb.AppendLine("<!DOCTYPE html><html lang='en'><head><meta charset='utf-8'><title>New HwInspector Report</title>");
+        sb.AppendLine("<!DOCTYPE html><html lang='en'><head><meta charset='utf-8'><title>Hardware Inspector Win Report</title>");
         sb.AppendLine("<style>body{font-family:Segoe UI,Arial,sans-serif;background:#0B1220;color:#E6E8EC;margin:32px}h1{color:#4CC3FF}h2{color:#9AE0FF;border-bottom:1px solid #1F2A44;padding-bottom:6px}table{border-collapse:collapse;width:100%;margin:8px 0}th,td{border:1px solid #26324F;padding:6px 8px;text-align:left;font-size:13px}th{background:#121D33;color:#7EC8FF}tr:nth-child(even){background:#0F1A2E}.warn{color:#E8B33C}.crit{color:#E8574E}.ok{color:#4CC38A}.section{background:#111C33;border:1px solid #1F2A44;border-radius:8px;padding:14px;margin:16px 0}</style></head><body>");
-        sb.AppendLine($"<h1>New HwInspector &mdash; Hardware Report</h1><p>Generated {DateTime.Now:yyyy-MM-dd HH:mm:ss} &bull; Machine {Environment.MachineName} &bull; v{AppVersion}</p>");
+        sb.AppendLine($"<h1>Hardware Inspector Win &mdash; Hardware Report</h1><p>Generated {DateTime.Now:yyyy-MM-dd HH:mm:ss} &bull; Machine {Environment.MachineName} &bull; v{AppVersion}</p>");
         if (opts.IncludeOverview)
         {
             sb.AppendLine("<div class='section'><h2>System Overview</h2><table>");

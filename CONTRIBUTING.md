@@ -1,6 +1,6 @@
-# Contributing to New HwInspector
+﻿# Contributing to Hardware Inspector Win
 
-First off — thank you! Every bug report, feature idea, and pull request makes New HwInspector a better utility for everyone. Contributions of any size are welcome: fixing a typo in documentation is just as valuable as adding new hardware sensor monitors.
+First off — thank you! Every bug report, feature idea, and pull request makes Hardware Inspector Win a better utility for everyone. Contributions of any size are welcome: fixing a typo in documentation is just as valuable as adding new hardware sensor monitors.
 
 ## Code of Conduct
 
@@ -22,7 +22,7 @@ When filing a bug report, please include:
 2. **Windows build & architecture** — e.g. Windows 11 23H2 (Build 22631), x64.
 3. **Hardware configuration** — CPU, Motherboard, GPU model, and BIOS version if relevant.
 4. **Steps to reproduce** — what screen or action triggered the issue.
-5. **Logs** — local session logs located at `%LOCALAPPDATA%\NewHwInspector\logs\app_session_*.txt`.
+5. **Logs** — local session logs located at `%LOCALAPPDATA%\HardwareInspectorWin\logs\app_session_*.txt`.
 
 ## Setting up a Development Environment
 
@@ -35,14 +35,14 @@ Prerequisites:
 
 ```powershell
 # Clone the repository
-git clone https://github.com/uponatime2019/NewHwInspector.git
-cd NewHwInspector
+git clone https://github.com/uponatime2019/HardwareInspectorWin.git
+cd HardwareInspectorWin
 
 # Build
-dotnet build NewHwInspector.csproj -p:Platform=x64
+dotnet build HardwareInspectorWin.csproj -p:Platform=x64
 
 # Run
-dotnet run --project NewHwInspector.csproj -p:Platform=x64
+dotnet run --project HardwareInspectorWin.csproj -p:Platform=x64
 ```
 
 > **Note**: Because the project targets multi-architecture `x86;x64;ARM64`, you must specify `-p:Platform=x64` (or `ARM64`) when invoking `dotnet build` or `dotnet publish`.
@@ -63,12 +63,12 @@ dotnet run --project NewHwInspector.csproj -p:Platform=x64
 | `Services/HardwareService.cs` | WMI, registry, and OS API hardware discovery engine |
 | `Services/SensorService.cs` | Polling loop, min/max/average statistics calculation, alert dispatch |
 | `Services/ReportService.cs` | System and sensor snapshot exporters |
-| `Services/AppSettings.cs` | Local JSON configuration persistence (`%LOCALAPPDATA%\NewHwInspector`) |
+| `Services/AppSettings.cs` | Local JSON configuration persistence (`%LOCALAPPDATA%\HardwareInspectorWin`) |
 | `Helpers/WindowHelper.cs` | Native Win32 window icon and DPI presenter utilities |
 
 ## Guidelines for Contributions
 
 - **Pure unpackaged & standalone**: Do not introduce dependencies on UWP/MSIX packaged APIs (`Package.Current`, `ApplicationData.Current`). Always use standard .NET base directories and local app data paths.
-- **Privacy & local-only**: New HwInspector has zero telemetry endpoints, zero network tracking, and zero ads. All diagnostic queries are local. PRs introducing network phone-home mechanisms will be declined.
+- **Privacy & local-only**: Hardware Inspector Win has zero telemetry endpoints, zero network tracking, and zero ads. All diagnostic queries are local. PRs introducing network phone-home mechanisms will be declined.
 - **Keep dependencies lean**: Avoid large external dependencies when native Windows APIs or WMI provide the necessary information.
-- **Clean builds**: Ensure `dotnet build NewHwInspector.csproj -p:Platform=x64` passes with 0 errors and 0 warnings.
+- **Clean builds**: Ensure `dotnet build HardwareInspectorWin.csproj -p:Platform=x64` passes with 0 errors and 0 warnings.

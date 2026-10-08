@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
 
-namespace NewHwInspector.Services;
+namespace HardwareInspectorWin.Services;
 
 internal static class NativeMethods
 {

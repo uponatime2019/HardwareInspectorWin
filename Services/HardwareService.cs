@@ -1,5 +1,5 @@
-using Microsoft.Win32;
-using NewHwInspector.Models;
+﻿using Microsoft.Win32;
+using HardwareInspectorWin.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NewHwInspector.Services;
+namespace HardwareInspectorWin.Services;
 
 public sealed class HardwareService
 {

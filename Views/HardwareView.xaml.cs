@@ -1,12 +1,12 @@
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using NewHwInspector.Models;
-using NewHwInspector.Services;
+using HardwareInspectorWin.Models;
+using HardwareInspectorWin.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace NewHwInspector.Views;
+namespace HardwareInspectorWin.Views;
 
 public sealed partial class HardwareView : UserControl
 {

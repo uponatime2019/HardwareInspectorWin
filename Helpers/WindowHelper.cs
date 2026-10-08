@@ -1,4 +1,4 @@
-using Microsoft.UI;
+﻿using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using System;
@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using Windows.Graphics;
 using WinRT.Interop;
 
-namespace NewHwInspector.Helpers;
+namespace HardwareInspectorWin.Helpers;
 
 public static class WindowHelper
 {

@@ -1,8 +1,8 @@
-using Microsoft.UI.Xaml;
-using NewHwInspector.Services;
+﻿using Microsoft.UI.Xaml;
+using HardwareInspectorWin.Services;
 using System;
 
-namespace NewHwInspector;
+namespace HardwareInspectorWin;
 
 public partial class App : Application
 {
@@ -30,7 +30,7 @@ public partial class App : Application
 
     protected override async void OnLaunched(LaunchActivatedEventArgs args)
     {
-        AppLogger.Log($"NewHwInspector launched version={ReportService.AppVersion}");
+        AppLogger.Log($"HardwareInspectorWin launched version={ReportService.AppVersion}");
         await AppSettings.LoadAsync();
         ApplyTheme(AppSettings.Current.Theme);
         _window = new MainWindow();

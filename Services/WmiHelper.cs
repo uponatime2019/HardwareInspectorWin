@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Management;
 
-namespace NewHwInspector.Services;
+namespace HardwareInspectorWin.Services;
 
 internal static class WmiHelper
 {

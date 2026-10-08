@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 
-namespace NewHwInspector.Models;
+namespace HardwareInspectorWin.Models;
 
 public enum SensorStatus { Unknown, Normal, Warning, Critical, Unavailable }
 
